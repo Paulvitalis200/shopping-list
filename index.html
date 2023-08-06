@@ -11,30 +11,29 @@
     <title>Shopping List</title>
   </head>
   <body>
+    <form id="myForm">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Category</label>
+        <input type="text" class="form-control" id="category">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="amount">
+      </div>
+      
+      <button type="submit" class="btn btn-primary mb-3" onclick="submitForm(event)">Submit</button>
+    </form>
     <table class="table table-bordered" id="table">
       <tr>
         <th scope="col" id="description">Description</th>
         <th scope="col" id="category">Category</th>
         <th scope="col" id="amount">Amount</th>
       </tr>
-      <!-- <tr>
-        <td>Rubber</td>
-        <td>Stationary</td>
-        <td>200</td>
-      </tr>
-      <tr>
-        <td>Milk</td>
-        <td>Grocery</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>Sofa</td>
-        <td>Furniture</td>
-        <td>300000</td>
-      </tr>
-      <tr>
-        <td colspan="2">Total</td>
-      </tr> -->
+      
     </table>
 
     <script src="index.js"></script>

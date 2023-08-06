@@ -22,50 +22,57 @@ const myList = [
 const table = document.getElementById('table');
 
 function shoppingList() {
-    const row1 = document.createElement('tr');
-    const rubber = document.createElement('td');
-    const stationary = document.createElement('td');
-    const amount1 = document.createElement('td');
-    const row2 = document.createElement('tr');
-    const milk = document.createElement('td');
-    const grocery = document.createElement('td');
-    const amount2 = document.createElement('td');
-    const row3 = document.createElement('tr');
-    const sofa = document.createElement('td');
-    const furniture = document.createElement('td');
-    const amount3 = document.createElement('td');
-    const row4 = document.createElement('tr');
-    const total = document.createElement('td');
+    
+    
+    
     const sumTotal = document.createElement('td');
+    for (let i = 0; i < myList.length; i++) {
+        console.log('item', myList[i]);
+        const row = document.createElement('tr');
+        const description = document.createElement('td');
+        const category = document.createElement('td');
+        const amount = document.createElement('td');
+        description.innerHTML = myList[i].description
+        category.innerHTML = myList[i].category
+        amount.innerHTML = myList[i].amount
+        row.append(description,category,amount)
+        table.append(row)
+      }
 
-    rubber.innerHTML = 'Rubber';
-    stationary.innerHTML = 'Stationary';
-    amount1.innerHTML = '200';
-
-    milk.innerHTML = 'Milk';
-    grocery.innerHTML = 'Groceries';
-    amount2.innerHTML = '50';
-
-    sofa.innerHTML = 'Sofa';
-    furniture.innerHTML = 'Furniture';
-    amount3.innerHTML = '300000';
-
-    total.innerHTML = 'Total';
-    sumTotal.innerHTML = myList.reduce((accumulator, currentValue) => {
+      const total = document.createElement('tr');
+      const totalText = document.createElement('td');
+      const space = document.createElement('td');
+      const totalAmount = document.createElement('td');
+    totalText.innerHTML = 'Total';
+    space.innerHTML = '';
+    totalAmount.innerHTML = myList.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.amount;
     }, 0);
+    total.append(totalText, space, totalAmount)
+    table.append(total)
 
-    row1.append(rubber, stationary, amount1);
-    row2.append(milk, grocery, amount2);
-    row3.append(sofa, furniture, amount3);
-    row4.append(total, sumTotal);
-
-    table.append(row1, row2, row3, row4);
     
 }
 
 shoppingList();
 
+function submitForm(event) {
+    event.preventDefault()
+    const description =document.getElementById('description');
+    const category =document.getElementById('category');
+    const amount =document.getElementById('amount');
+    console.log(description,category,amount)
+    const payLoad = {
+        id: myList.length,
+        description: description.value,
+        category: category.value,
+        amount: parseInt(amount.value)
+    }
+    myList.push(payLoad);
+    console.log(myList)
+    document.getElementById("myForm").reset();
+    shoppingList();
+}
 
 // 1. Create a table of your shopping list containing the three items in the list with three columns. Description, Category and Amount
 // 2. Calculate the total amount using javascript's "reduce" method. Read up on it from google
